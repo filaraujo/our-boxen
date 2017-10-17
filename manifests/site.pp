@@ -1,6 +1,6 @@
 require boxen::environment
 require homebrew
-/* require gcc */
+require gcc
 
 Exec {
   group       => 'staff',
@@ -57,6 +57,7 @@ node default {
   include git
   include hub
   include nginx
+  include java
 
   # fail if FDE is not enabled
   if $::root_encrypted == 'no' {
@@ -64,12 +65,11 @@ node default {
   }
 
   # node versions
-  nodejs::version { '0.8': }
-  nodejs::version { '0.10': }
-  nodejs::version { '0.12': }
+  nodejs::version { 'v6.3.0': }
+  nodejs::version { 'v8.7.0': }
 
   # default ruby versions
-  ruby::version { '2.4.1': }
+  ruby::version { '2.2.4': }
 
   # common, useful packages
   package {
